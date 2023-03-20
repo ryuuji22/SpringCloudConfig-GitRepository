@@ -4,7 +4,7 @@ server:
 ### Eureka Client configuration
 eureka:
   instance:
-    prefer-ip-address: true
+    preferIpAddress: true
     lease-expiration-duration-in-seconds: 30
   client:
     serviceUrl:
