@@ -33,5 +33,5 @@ management:
     env:
       enabled: true
       
- properties:
+properties:
   nombre: Diego
