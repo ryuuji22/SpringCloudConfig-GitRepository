@@ -8,7 +8,7 @@ eureka:
     lease-expiration-duration-in-seconds: 30
   client:
     serviceUrl:
-      defaultZone: ${EUREKA.HOST.SERVER:http://discovery-server:8761/eureka}
+      defaultZone: ${EUREKA.HOST.SERVER:http://localhost:8761/eureka}
     registerWithEureka: true
     fetchRegistry: true
     healthcheck:
