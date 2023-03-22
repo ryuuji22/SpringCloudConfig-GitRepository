@@ -32,6 +32,11 @@ eureka:
     refresh:
       enable: true
 
+springdoc:
+  packagesToScan: com.mitocode.licensewriteservice.api.controllers
+  swagger-ui:
+   enabled: true
+
 ### Actuator info (/actuator/info)
 info:
   app:
