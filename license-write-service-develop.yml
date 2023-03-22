@@ -48,6 +48,10 @@ management:
   info:
     env:
       enabled: true
+
+# Packages to include
+springdoc:
+ packagesToScan: com.mitocode.api.controllers
       
 properties:
   nombre: Diego
