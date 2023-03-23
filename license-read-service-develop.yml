@@ -33,6 +33,11 @@ management:
     env:
       enabled: true
 
+springdoc:
+  packagesToScan: com.mitocode.licensereadservice.api.controllers
+  swagger-ui:
+   enabled: true
+
 ### Mongo database configuration
 spring:
   data:
