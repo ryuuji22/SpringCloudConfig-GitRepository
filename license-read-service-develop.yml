@@ -1,0 +1,45 @@
+server:
+  port: ${CUSTOM.SERVER.PORT:9003}
+
+### Eureka Client configuration
+eureka:
+  instance:
+    preferIpAddress: true
+    lease-expiration-duration-in-seconds: 30
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA.HOST.SERVER:http://localhost:8761/eureka}
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    refresh:
+      enable: true
+
+### Actuator info (/actuator/info)
+info:
+  app:
+    name: License Read Service Microservice
+    description: Microservicio para consulta de licencias
+    version: 1.0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /actuator
+  info:
+    env:
+      enabled: true
+
+### Mongo database configuration
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: license
+      username: root
+      password: password
+      authentication-database: admin
