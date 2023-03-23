@@ -48,3 +48,17 @@ spring:
       username: root
       password: password
       authentication-database: admin
+  
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: default
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+ 
+app:
+  kafka:
+    consumer:
+      licencia-created-topic: licenciaCreated
+      licencia-deleted-topic: licenciaDeleted
