@@ -1,0 +1,60 @@
+server:
+  port: ${CUSTOM.SERVER.PORT:8762}
+
+### Eureka Client configuration
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 30
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA.HOST.SERVER:http://localhost:8761/eureka}
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    refresh:
+      enable: true
+      
+jwt:
+  auth:
+    converter:
+      resource-id: springboot-keycloak-client
+      principal-attribute: preferred_username
+      
+spring:
+  security:
+     oauth2:
+       resourceserver:
+         jwt:
+          issuer-uri: http://localhost:8080/realms/SpringBootKeycloak
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+           
+### Cloud Gateway configuration
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: license-write-service
+          uri: lb://license-write-service
+          predicates:
+            - Path=/api/v1/licencia-write/**
+        - id: license-read-service
+          uri: lb://license-read-service
+          predicates:
+            - Path=/api/v1/licencia-read/**
+
+### Actuator info (/actuator/info)
+info:
+  app:
+    app-name: Cloud Gateway Microservice
+    description: Microservicio para el ruteo de los microservicios
+    version: 1.0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /actuator
