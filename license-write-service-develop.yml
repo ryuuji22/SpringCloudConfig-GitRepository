@@ -16,7 +16,7 @@ spring:
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver
-security:
+ security:
     oauth2:
       resourceserver:
         jwt:
