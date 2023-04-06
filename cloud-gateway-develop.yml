@@ -39,11 +39,15 @@ spring:
         - id: license-write-service
           uri: lb://license-write-service
           predicates:
-            - Path=/api/v1/licencia-write/**
+            - Path=/api/v1/licencia/**
+            - Header=X-Request-Id, write
+            - Method=POST,DELETE,PUT
         - id: license-read-service
           uri: lb://license-read-service
           predicates:
-            - Path=/api/v1/licencia-read/**
+            - Path=/api/v1/licencia/**
+            - Header=X-Request-Id, read
+            - Method=GET
 
 ### Actuator info (/actuator/info)
 info:
