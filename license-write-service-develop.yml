@@ -1,30 +1,30 @@
 server:
-  port: ${CUSTOM.SERVER.PORT:9002}
+  port: ${CUSTOM_SERVER_PORT:9002}
 
 spring:
  jpa:
-    database: POSTGRESQL
+    database: ${SPRING_DATABASE_PROVIDER:POSTGRESQL}
     show-sql: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
  sql:
     init:
       mode: ALWAYS
       continue-on-error: true
  datasource:
-    url: jdbc:postgresql://localhost:5432/licenses
-    username: postgres
-    password: postgres
-    driverClassName: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driverClassName: ${SPRING_DATASOURCE_DRIVERCLASSNAME}
  security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/auth/realms/SpringBootKeycloak
+          issuer-uri: ${OAUTH2_ISSUER_URI}
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
  kafka:
-    bootstrap-servers: localhost:9092
-    producer:    
+    bootstrap-servers: ${KAFKA_BOOSTRAP_SERVER}
+    producer:
       retries: 3
       acks: all
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -37,7 +37,7 @@ eureka:
     lease-expiration-duration-in-seconds: 30
   client:
     serviceUrl:
-      defaultZone: ${EUREKA.HOST.SERVER:http://localhost:8761/eureka}
+      defaultZone: ${EUREKA_HOST_SERVER:http://localhost:8761/eureka}
     registerWithEureka: true
     fetchRegistry: true
     healthcheck:
