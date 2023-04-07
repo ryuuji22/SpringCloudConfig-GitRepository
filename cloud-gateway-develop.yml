@@ -1,5 +1,5 @@
 server:
-  port: ${CUSTOM.SERVER.PORT:8762}
+  port: ${CUSTOM_SERVER_PORT:8762}
 
 ### Eureka Client configuration
 eureka:
@@ -8,7 +8,7 @@ eureka:
     lease-expiration-duration-in-seconds: 30
   client:
     serviceUrl:
-      defaultZone: ${EUREKA.HOST.SERVER:http://localhost:8761/eureka}
+      defaultZone: ${EUREKA_HOST_SERVER:http://localhost:8761/eureka}
     registerWithEureka: true
     fetchRegistry: true
     healthcheck:
@@ -19,15 +19,15 @@ eureka:
 jwt:
   auth:
     converter:
-      resource-id: springboot-keycloak-client
-      principal-attribute: preferred_username
-      
+      resource-id: ${AUTH_CONVERTER_RESOURCEID}
+      principal-attribute: ${AUTH_CONVERTER_PRINCIPAL_ATRIBUTE}
+
 spring:
   security:
      oauth2:
        resourceserver:
          jwt:
-          issuer-uri: http://localhost:8080/auth/realms/SpringBootKeycloak
+          issuer-uri: ${OAUTH2_ISSUER_URI}
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
            
 ### Cloud Gateway configuration
