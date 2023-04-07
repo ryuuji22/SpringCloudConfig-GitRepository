@@ -19,15 +19,15 @@ eureka:
 jwt:
   auth:
     converter:
-      resource-id: ${AUTH_CONVERTER_RESOURCEID}
-      principal-attribute: ${AUTH_CONVERTER_PRINCIPAL_ATRIBUTE}
+      resource-id: springboot-keycloak-client
+      principal-attribute: preferred_username
 
 spring:
   security:
      oauth2:
        resourceserver:
          jwt:
-          issuer-uri: ${OAUTH2_ISSUER_URI}
+          issuer-uri: http://keycloak:8080/auth/realms/SpringBootKeycloak
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
            
 ### Cloud Gateway configuration
