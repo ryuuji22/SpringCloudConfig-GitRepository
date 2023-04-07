@@ -72,3 +72,4 @@ app:
     producer:
       licencia-created-topic: licenciaCreated
       licencia-deleted-topic: licenciaDeleted
+      audit-created-topic: auditCreated
