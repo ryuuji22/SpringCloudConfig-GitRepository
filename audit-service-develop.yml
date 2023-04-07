@@ -1,5 +1,5 @@
 server:
-  port: ${CUSTOM.SERVER.PORT:9004}
+  port: ${CUSTOM_SERVER_PORT:9004}
 
 ### Eureka Client configuration
 eureka:
@@ -8,7 +8,7 @@ eureka:
     lease-expiration-duration-in-seconds: 30
   client:
     serviceUrl:
-      defaultZone: ${EUREKA.HOST.SERVER:http://localhost:8761/eureka}
+      defaultZone: ${EUREKA_HOST_SERVER:http://localhost:8761/eureka}
     registerWithEureka: true
     fetchRegistry: true
     healthcheck:
@@ -41,22 +41,22 @@ springdoc:
 ### MySQL database configuration
 spring:
   jpa:
-    database: MYSQL
+    database: ${SPRING_DATABASE_PROVIDER:MYSQL}
     show-sql: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
   sql:
     init:
       mode: ALWAYS
       continue-on-error: true
   datasource:
-    url: jdbc:mysql://localhost:3306/audit
-    username: mysql
-    password: mysql
-    driverClassName: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driverClassName: ${SPRING_DATASOURCE_DRIVERCLASSNAME}
     
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOSTRAP_SERVER}
     consumer:
       group-id: default
       auto-offset-reset: earliest
