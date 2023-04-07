@@ -48,6 +48,10 @@ spring:
             - Path=/api/v1/licencia/**
             - Header=X-Request-Id, read
             - Method=GET
+        - id: audit-service
+          uri: lb://audit-service
+          predicates:
+            - Path=/api/v1/auditoria/**
 
 ### Actuator info (/actuator/info)
 info:
