@@ -1,0 +1,65 @@
+server:
+  port: ${CUSTOM.SERVER.PORT:9004}
+
+### Eureka Client configuration
+eureka:
+  instance:
+    preferIpAddress: true
+    lease-expiration-duration-in-seconds: 30
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA.HOST.SERVER:http://localhost:8761/eureka}
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    refresh:
+      enable: true
+
+### Actuator info (/actuator/info)
+info:
+  app:
+    name: Audit Service Microservice
+    description: Microservicio para registro de auditoria
+    version: 1.0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /actuator
+  info:
+    env:
+      enabled: true
+
+springdoc:
+  packagesToScan: com.mitocode.auditservice.api.controllers
+  swagger-ui:
+   enabled: true
+
+### Mongo database configuration
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: license
+      username: root
+      password: password
+      authentication-database: admin
+  
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: default
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+ 
+app:
+  kafka:
+    consumer:
+      audit-created-topic: auditCreated
