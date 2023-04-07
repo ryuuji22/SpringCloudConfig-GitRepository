@@ -38,16 +38,13 @@ springdoc:
   swagger-ui:
    enabled: true
 
-### Mongo database configuration
+### MySQL database configuration
 spring:
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: license
-      username: root
-      password: password
-      authentication-database: admin
+  datasource:
+    url: jdbc:mysql://localhost:3306/audit
+    username: mysql
+    password: mysql
+    driverClassName: com.mysql.jdbc.Driver
   
   kafka:
     bootstrap-servers: localhost:9092
